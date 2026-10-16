@@ -1,0 +1,204 @@
+{
+  // Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "UnionFind Template": {
+    "prefix": "uf",
+    "body": [
+      "vi par(1e6);",
+      "int root(int x) { return par[x] == x ? x : par[x] = root(par[x]); }",
+      "void unite(int x, int y) {",
+      "    int rx = root(x), ry = root(y);",
+      "    if (rx != ry) par[rx] = ry;",
+      "}",
+      "bool same(int x, int y) { return root(x) == root(y); }"
+    ],
+    "description": "Union-Find structure"
+  },
+  "Dijkstra": {
+    "prefix": "di",
+    "body": [
+      "using P = pair<long long,int>;",
+      "",
+      "priority_queue<P, vector<P>, greater<P>> pq;",
+      "",
+      "dist[s]=0;",
+      "pq.push({0,s});",
+      "",
+      "while(!pq.empty()){",
+      "    auto [d,v]=pq.top();",
+      "    pq.pop();",
+      "",
+      "    if(d!=dist[v]) continue;",
+      "",
+      "    for(auto [to,cost]: G[v]){",
+      "        if(dist[to] > d + cost){",
+      "            dist[to] = d + cost;",
+      "            pq.push({dist[to], to});",
+      "        }",
+      "    }",
+      "}"
+    ]
+  },
+  "BFS Template": {
+    "prefix": "bfs",
+    "body": [
+      "queue<int>Q;",
+      "vi B(n,-1)", 
+      "while(!Q.empty()){",
+      "    int v=Q.front(); Q.pop();",
+      "    for (int nv : A[v]) {",
+      "        if (B[nv] != -1) continue;",
+      "        B[nv]=B[v]+1;",
+      "        Q.push(nv);",
+      "    }",
+      "}"
+    ],
+    "description": "Breadth-First Search (BFS) template"
+  },
+  "DFS Template": {
+    "prefix": "dfs",
+    "body": [
+      "auto dfs=[&](auto self,int v)->void {",
+      "    U[v] = 1;",
+      "    for (int nv:A[v]) {",
+      "        if(U[nv]) continue;",
+      "        self(self,nv);",
+      "    }",
+      "};"
+    ],
+    "description": "Depth-First Search (DFS) template using recursion"
+  },
+  "CP Basic Setup": {
+    "prefix": "cp",
+    "body": [
+      "#include <bits/stdc++.h>",
+      "#include <atcoder/all>",
+      "using namespace std;",
+      "using namespace atcoder;",
+      "using ll = long long;",
+      "using ld = long double;",
+      "using vi = vector<int>;",
+      "using vl = vector<ll>;",
+      "using pll =pair<ll,ll>;",
+      "#define pb push_back",
+      "#define rep(i,n) for (int i = 0; i < (n); ++i)",
+      "#define all(v) (v).begin(), (v).end()",
+      "",
+      "int main() {",
+      "}"
+    ],
+    "description": "Competitive Programming basic setup"
+  },
+  "GCD Template": {
+    "prefix": "gcd",
+    "body": [
+      "int gcd(int a, int b){",
+      "   if(a%b == 0) return b;",
+      "   else return gcd(b, a%b);",
+      "}"
+        ],
+  },
+  "print array1 Template": {
+    "prefix": "pa1",
+    "body": [
+      "rep(i,n)cout << A[i] <<\" \";",
+      "cout << endl;"
+        ],
+  },
+  "print array2 Template": {
+    "prefix": "pa2",
+    "body": [
+      "rep(i,h){",
+      "    rep(j,w) cout << A[i][j] << \" \";",
+      "    cout << endl;",
+      "}"
+        ],
+  },
+  "to10": {
+    "prefix": "to10",
+    "body": [
+      "ll to10(string s,int base){",
+      "    ll res=0;",
+      "    for(char c : s){",
+      "        int digit;",
+      "        if('0'<=c&&c<='9')",
+      "            digit=c-'0';",
+      "        else",
+      "            digit=c-'A'+10;",
+      "        res=res*base+digit;",
+      "    }",
+      "    return res;",
+      "}"
+    ]
+  },
+  "from10": {
+    "prefix": "from10",
+    "body": [
+      "string from10(ll x, int base){",
+      "    if(x==0) return \"0\";",
+      "    string res;",
+      "    while(x){",
+      "        int digit=x%base;",
+      "        if(digit<10)",
+      "            res+=char('0'+digit);",
+      "        else",
+      "            res+=char('A'+digit-10);",
+      "        x/=base;",
+      "    }",
+      "    reverse(all(res));",
+      "    return res;",
+      "}"
+    ]
+  },
+  "sqrt Template": {
+    "prefix": "sq",
+    "body": [
+      "//\u4e8c\u4e57\u3057\u3066x\u4ee5\u4e0b\u306b\u306a\u308b\u6700\u5927\u306e\u81ea\u7136\u6570",
+      "ll sq(ll x){",
+      "  ll y = sqrt(x);",
+      "  while(y*y>x)y--;",
+      "  while((y+1)*(y+1)<=x)y++;",
+      "  return y;",
+      "}"
+        ],
+  },
+  "power Template": {
+    "prefix": "pow",
+      "body": [
+        "ll powll(ll n, ll k){",
+        "    ll ans = 1;",
+        "    while(k > 0){",
+        "        if(k & 1) ans *= n;",
+        "        n *= n;",
+        "        k >>= 1;",
+        "    }",
+        "    return ans;",
+        "}"
+      ]
+  },
+  "combination": {
+    "prefix": "comb",
+    "body": [
+      "mint comb(int n, int k) {",
+      "    if (k < 0 || k > n) return 0;",
+      "    mint res = 1;",
+      "    for (int i = 1; i <= k; i++) {",
+      "        res *= n - i + 1;",
+      "        res /= i;",
+      "    }",
+      "    return res;",
+      "}"
+    ]
+  }
+}
