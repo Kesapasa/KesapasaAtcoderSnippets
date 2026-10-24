@@ -82,6 +82,7 @@
   "CP Basic Setup": {
     "prefix": "cp",
     "body": [
+      "//https://github.com/Kesapasa/KesapasaAtcoderSnippets/blob/main/cpp.json",
       "#include <bits/stdc++.h>",
       "#include <atcoder/all>",
       "using namespace std;",
@@ -94,6 +95,7 @@
       "#define pb push_back",
       "#define rep(i,n) for (int i = 0; i < (n); ++i)",
       "#define all(v) (v).begin(), (v).end()",
+      "",
       "",
       "int main() {",
       "}"
@@ -199,6 +201,24 @@
       "    }",
       "    return res;",
       "}"
+    ]
+  },
+  "radiansort": {
+    "prefix": "rasort",
+    "body": [
+      "    auto cmp = [](const pll &a, const pll &b) {",
+      "        auto [x, y] = a;",
+      "        auto [u, v] = b;",
+      "",
+      "        bool h = y < 0 || (y == 0 && x < 0);",
+      "        bool k = v < 0 || (v == 0 && u < 0);",
+      "",
+      "        if (h != k) {",
+      "            return h < k;",
+      "        }",
+      "",
+      "        return x * v - y * u > 0;",
+      "    };"
     ]
   }
 }
