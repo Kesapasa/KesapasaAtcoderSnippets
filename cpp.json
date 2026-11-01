@@ -50,21 +50,26 @@
       "}"
     ]
   },
-  "BFS Template": {
+  "bfs": {
     "prefix": "bfs",
     "body": [
-      "queue<int>Q;",
-      "vi B(n,-1)", 
-      "while(!Q.empty()){",
-      "    int v=Q.front(); Q.pop();",
-      "    for (int nv : A[v]) {",
-      "        if (B[nv] != -1) continue;",
-      "        B[nv]=B[v]+1;",
-      "        Q.push(nv);",
+      "vi bfs(vector<vi> &A,int p){",
+      "    int n=A.size();",
+      "    vi res(n,-1);",
+      "    queue<int>Q;",
+      "    res[p]=0;",
+      "    Q.push(p);",
+      "    while(!Q.empty()){",
+      "        int v=Q.front(); Q.pop();",
+      "        for (int nv : A[v]) {",
+      "            if (res[nv] != -1) continue;",
+      "            res[nv]=res[v]+1;",
+      "            Q.push(nv);",
+      "        }",
       "    }",
+      "    return res;",
       "}"
-    ],
-    "description": "Breadth-First Search (BFS) template"
+    ]
   },
   "DFS Template": {
     "prefix": "dfs",
@@ -219,6 +224,43 @@
       "",
       "        return x * v - y * u > 0;",
       "    };"
+    ]
+  },
+  "center": {
+    "prefix": "cent",
+    "body": [
+      "int cent(const vector<vi> &A){",
+      "    int n=A.size();",
+      "    if(n==1)return 0;",
+      "",
+      "    vi D(n),U(n,1);",
+      "    queue<int> Q;",
+      "",
+      "    rep(i,n){",
+      "        D[i]=A[i].size();",
+      "        if(D[i]==1){",
+      "            Q.push(i);",
+      "            U[i]=0;",
+      "        }",
+      "    }",
+      "",
+      "    int res=-1;",
+      "    while(!Q.empty()){",
+      "        int a=Q.front();",
+      "        Q.pop();",
+      "        res=a;",
+      "",
+      "        for(auto x:A[a]){",
+      "            if(!U[x])continue;",
+      "            D[x]--;",
+      "            if(D[x]==1){",
+      "                Q.push(x);",
+      "                U[x]=0;",
+      "            }",
+      "        }",
+      "    }",
+      "    return res;",
+      "}"
     ]
   }
 }
